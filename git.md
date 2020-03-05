@@ -718,3 +718,118 @@ git archive HEAD --format=zip --output=../headBackup.zip
 ```
 git restore --staged src/main/java/org/mcss/samobile/api/batch/service/CuramRest2Service.java
 ```
+
+## Misc notes
+```
+-- commited all your changes to feature-branch
+git checkout sandbox
+git pull --rebase
+git rebase sandbox my_new_feature
+
+git checkout master
+git merge my_new_feature
+git push
+
+
+$ git checkout sandbox
+$ git fetch -p origin sandbox   #or git fetch origin
+$ git merge origin/sandbox
+$ git checkout <feature-branch>
+$ git merge sandbox
+$ git push origin <feature-branch>
+
+Method 
+1)
+git checkout feature
+git fetch origin
+git rebase origin/dev
+
+2)
+git checkout feature
+git pull --rebase origin/dev
+
+3)
+git checkout dev
+git pull
+git checkout feature
+git rebase dev
+
+git pull upstream develop
+git push origin
+
+git checkout -b new-feature
+git push -u origin new-feature
+
+git reset --hard origin/master
+
+
+#Cherry Pick
+git log # take note of the commit IDs, which are 32 digit hexadecimal strings
+
+git checkout master # switch back to the real master branch
+git cherry-pick [ID] # repeat for each ID
+git cherry -v # doublecheck what will actually be pushed
+git push origin master
+
+git checkout my_master # safe again
+
+
+##Common git commands##
+
+upstream - the github repository.
+
+fetch and merge changes from upstream:
+
+git pull
+commit all local changes:
+
+git commit -a -m “message”
+commit changes in specific files:
+
+git add <files…>
+
+git commit -m “message”
+get patch files for last N commits
+
+git format-patch -N
+get patch files for all commits that are in your current branch but not in upstream:
+
+git format-patch origin/master
+undo (delete) all current non-commited changes (Watch out !):
+
+git reset --hard HEAD
+undo last commit, but leave the changes in the working tree
+
+git reset --soft HEAD^1
+undo (delete) all commits since last time one was pulled from upstream (Watch out !). This should be done while in the master branch:
+
+git reset --hard origin/master
+undo all commits since the last time one was pulled from upstream but leave the changes in the working tree. This should be done while in the master branch:
+
+git reset --soft origin/master
+show uncommited local changes:
+
+git diff [file]
+discard local changes instead of commiting them:
+
+git checkout — <file>
+add interactively
+
+git add -i
+To revert local commits, revert will create another commit that undoes the commit provided. Unlike reset the history is not erased.
+
+git revert <commit ID>
+show changes compared to upstream:
+
+git diff origin/master    # only diff
+
+git show origin/master..  # log and diff
+
+git log origin/master..   # only log
+show latest log in upstream:
+
+git log origin/master
+see status of changes:
+
+git status
+```

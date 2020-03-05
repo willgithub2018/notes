@@ -1,8 +1,5 @@
 # GIT
-
-## Git
 ## Setup
-
 ```
 cd /path/to/my/repo
 git config core.sshCommand "ssh -i /c/Users/xxx/.ssh/id_rsa_xxx"
@@ -365,7 +362,27 @@ git stash save -u "pre merge version"
 git checkout -b develop-seometatags
 ```
 [Tutorial](http://rogerdudler.github.io/git-guide/)
+##  Updating a feature branch
+$ git checkout [master]
 
+Merge the changes from origin/master into your local master branch. This brings your master branch in sync with the remote repository, without losing your local changes. If your local branch didn't have any unique commits, Git will instead perform a "fast-forward".
+$ git fetch -p origin [master]
+
+Check out the branch you want to merge into
+$ git merge origin/[master]
+
+Merge your (now updated) master branch into your feature branch to update it with the latest changes
+$ git checkout <feature-branch>
+
+Depending on your git configuration this may open vim. Enter a commit message, save, and quit vim:
+Press a to enter insert mode and append text following the current cursor position.
+Press the esc key to enter command mode.
+Type :wq to write the file to disk and quit.
+This only updates your local feature branch. To update it on GitHub, push your changes.
+$ git merge [master]
+
+$ git push origin <feature-branch>
+```
 # workflow
 ```
 # feature_branch
